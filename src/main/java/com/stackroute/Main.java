@@ -10,19 +10,8 @@ public class Main {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(Configure.class);
         Movie movie = (Movie) applicationContext.getBean("movie");
         System.out.println(movie.getActor());
-        Movie movie1 = applicationContext.getBean("movie1",Movie.class);
+        Movie movie1 = applicationContext.getBean("movie",Movie.class);
         System.out.println(movie1.getActor());
-        System.out.print("singleton scope: ");
-        System.out.println(movie==movie1);
-        Movie movie2 = applicationContext.getBean("movie2",Movie.class);
-        System.out.println(movie2.getActor());
-        Movie movie3 = applicationContext.getBean("movie2",Movie.class);
-        System.out.println(movie3.getActor());
-        System.out.print("prototype scope: ");
-        System.out.println(movie2==movie3);
-
-
-
 
     }
 
