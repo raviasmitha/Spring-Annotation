@@ -1,37 +1,20 @@
 package com.stackroute;
 
 import com.stackroute.domain.Movie;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.support.AbstractApplicationContext;
 
-import com.stackroute.domain.Movie;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.ClassPathResource;
+@ComponentScan (basePackages = "com.stackroute.Domain")
+public class Main
+{
+    public static void main( String[] args )
+    {
+        AbstractApplicationContext context = new AnnotationConfigApplicationContext(Configure.class);
+        Movie movie = context.getBean("movie",Movie.class);
 
-import com.stackroute.domain.Movie;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.ClassPathResource;
-
-
-
-
-public class Main {
-    public static void main(String[] args) {
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(Configure.class);
-        Movie movie = (Movie) applicationContext.getBean("movie1");
         System.out.println(movie.getActor());
+        context.registerShutdownHook();
 
-        Movie movie1 = applicationContext.getBean("movie2", Movie.class);
-
-        System.out.println((movie1.getActor()));
-
-        movie.setApplicationContext(applicationContext);
-        movie.setBeanName("beam123");
     }
-
 }

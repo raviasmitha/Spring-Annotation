@@ -1,31 +1,35 @@
 package com.stackroute;
 
 
+
+import com.stackroute.demo.BeanLifeCycleDemo;
 import com.stackroute.domain.Actor;
 import com.stackroute.domain.Movie;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+
 
 @Configuration
 public class Configure {
-
-  @Bean
-  public Actor actorBean(){
+  @Bean("actor")
+  public Actor createActor() {
     Actor actor = new Actor();
-    actor.setName("asmitha");
-    actor.setGender("female");
     actor.setAge(22);
+    actor.setGender("Female");
+    actor.setName("Asmitha");
     return actor;
   }
 
-  @Bean(name = "movie1")
-  public Movie movieBean(){
-    return new Movie(actorBean());
+
+  @Bean(name = "movie")
+  public Movie createMovie1() {
+    Movie movie = new Movie(createActor());
+    movie.setActor(createActor());
+    return movie;
   }
 
-  @Bean(name = "movie2")
-  public Movie movieBean2(){
-    return new Movie(actorBean());
+  @Bean(initMethod = "customInit", destroyMethod = "customDestroy")
+  public BeanLifeCycleDemo getMyFileSystemBean() {
+    return new BeanLifeCycleDemo();
   }
 }
