@@ -7,6 +7,8 @@ import com.stackroute.domain.Actor;
 import com.stackroute.domain.Movie;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import com.stackroute.demo.BeanPostProcessorDemoBean;
+
 
 
 @Configuration
@@ -32,4 +34,10 @@ public class Configure {
   public BeanLifeCycleDemo getMyFileSystemBean() {
     return new BeanLifeCycleDemo();
   }
+
+  @Bean
+  public BeanPostProcessorDemoBean getBean(){
+    return new BeanPostProcessorDemoBean();
+  }
 }
+
