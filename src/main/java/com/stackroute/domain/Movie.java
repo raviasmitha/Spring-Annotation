@@ -1,7 +1,11 @@
 package com.stackroute.domain;
 
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.BeanFactory;
 
 @Component
 public class Movie {
@@ -30,4 +34,12 @@ public class Movie {
     }
 
 
+    public void setApplicationContext(ApplicationContext applicationContext) {
+        System.out.println(applicationContext);
+    }
+
+
+    public void setBeanName(String beam123) {
+        System.out.println(beam123);
+    }
 }

@@ -4,12 +4,10 @@ package com.stackroute;
 import com.stackroute.domain.Actor;
 import com.stackroute.domain.Movie;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 @Configuration
-@ComponentScan(basePackages = "com.stackroute")
 public class Configure {
 
   @Bean
@@ -21,5 +19,13 @@ public class Configure {
     return actor;
   }
 
+  @Bean(name = "movie1")
+  public Movie movieBean(){
+    return new Movie(actorBean());
+  }
 
+  @Bean(name = "movie2")
+  public Movie movieBean2(){
+    return new Movie(actorBean());
+  }
 }
